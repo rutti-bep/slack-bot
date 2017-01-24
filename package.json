@@ -19,11 +19,11 @@
   "homepage": "https://github.com/rutti-bep/slack-bot#readme",
   "dependencies": {
     "cron": "^1.2.1",
-    "node-cron": "^1.1.2",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "ws": "^1.1.1"
   },
-  "engines":{
+  "engines": {
     "node": "v4.4.4",
-    "npm" : "2.15.1"
+    "npm": "2.15.1"
   }
 }
