@@ -5,9 +5,6 @@ var token = process.env.SLACKBOT_TOKEN;
 var channel = process.env.SLACKBOT_CHANNEL;
 var username = process.env.SLACKBOT_USERNAME;
 
-console.log(token);
-console.log(channel);
-console.log(username);
 post("起動しますた");
 var startLesson = new CronJob("0 30 10-16 * * 1-5",function(){post("授業開始だよ!")},null,true,"Asia/Tokyo")
 var endLesson = new CronJob("0 20 11-16 * * 1-5",function(){post("休み時間だよ!")},null,true,"Asia/Tokyo")
