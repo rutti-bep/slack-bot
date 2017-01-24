@@ -2,12 +2,16 @@
 var request = require('request');
 var WS = require('ws');
 
+var responseFunction = require('./response');
+
 var token = process.env.SLACKBOT_TOKEN;
 var channel = process.env.SLACKBOT_CHANNEL;
 var username = process.env.SLACKBOT_USERNAME;
 var ws;
 var teams = [];
 var teamLength;
+
+
 teamGet();
 
 function send(text,channelId){ 
@@ -55,9 +59,7 @@ function rtmStart(){
                 if(parsedRes["type"] === "message"){
                    for (var i = 0;i < teamLength;i ++){
                      if(teams[i].id === parsedRes.channel){
-                        if(parsedRes.text === "てすとー"){
-                            send("てすとーレスる",teams[i].name); 
-                        }
+                       responseFunction(parsedRes.text,teams[i].name,send);
                      }
                    }
                 }
