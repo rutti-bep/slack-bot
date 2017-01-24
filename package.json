@@ -1,0 +1,22 @@
+{
+  "name": "slack-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rutti-bep/slack-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rutti-bep/slack-bot/issues"
+  },
+  "homepage": "https://github.com/rutti-bep/slack-bot#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
