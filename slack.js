@@ -30,7 +30,14 @@ function send(text,channelId){
     )
 }
 
-function teamGet(){
+function listenStart(){
+    teamGet(function(){
+     rtmStart(); 
+    });
+    
+}
+
+function teamGet(next){
     request.post("https://slack.com/api/groups.list",{form: {token: token,exclude_archived: "1"}}
     ,function(err,res,body){
        var parsedRes = JSON.parse(body);
@@ -40,7 +47,7 @@ function teamGet(){
        }
        console.log(teams)
        teamLength = teams.length;
-       rtmStart();
+       next();
     })
 }
 
