@@ -12,7 +12,7 @@ var teams = [];
 var teamLength;
 
 
-teamGet();
+//teamGet();
 
 function send(text,channelId){ 
     request.post('https://slack.com/api/chat.postMessage',
@@ -69,4 +69,4 @@ function rtmStart(){
 }
 
 
-module.exports = {send : send};
+module.exports = {send : send, teamGet: teamGet};
