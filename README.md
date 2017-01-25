@@ -2,4 +2,9 @@
 
 - responseの編集はresponse.js
 
-- 環境変数にSLACKBOT_TOKEN,SLACKBOT_USERNAME,SLACKBOT_CHANNEL,SLACKBOT_DEBUGCHANNEL（任意）を設定してappをrunすれば動く
+- 環境変数に以下を設定してappをrunすれば動く
+    - SLACKBOT_TOKEN
+    - SLACKBOT_USERNAME
+    - SLACKBOT_CHANNEL 
+    - SLACKBOT_DEBUGCHANNEL（任意）
+    - SlACKBOT_RESPONCE_AUTHORITY(任意)
