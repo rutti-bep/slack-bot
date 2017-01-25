@@ -12,7 +12,7 @@ var ws;
 var teams = [];
 var teamLength;
 
-function send(text,channelId){ 
+function send(text,channelId){
     request.post('https://slack.com/api/chat.postMessage',
        {form: {
             token: token,
@@ -29,14 +29,14 @@ function send(text,channelId){
 }
 
 function debugSend(text){
-  send(text,debugChannel);  
+  send(text,debugChannel);
 }
 
 function listenStart(){
     teamGet(function(){
       return rtmStart()
     });
-    
+
 }
 
 function teamGet(next){
@@ -67,7 +67,7 @@ function rtmStart(){
                   responseFunction(parsedRes.text,parsedRes.channel,send);
 /*                   for (var i = 0;i < teamLength;i ++){
                      if(teams[i].id === parsedRes.channel){
-                       responseFunction(parsedRes.text,teams[i].name,send);
+                       responseFunction(parsedRes,teams[i].name,send);
                      }
                    }
 */                }
