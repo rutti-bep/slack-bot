@@ -1,7 +1,7 @@
 'use strict';
-var responseFunction = function(res,teamName,send){
+var responseFunction = function(res,teamName,toolKit){
     if(res.text === "てすとー"){
-       send("てすとーレスる",teamName);
+       toolKit.send("てすとーレスる",teamName);
     }
 }
 

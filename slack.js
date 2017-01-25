@@ -30,6 +30,10 @@ function send(text,channelId){
     )
 }
 
+const toolKit = {
+  send: send,
+  debugSend: debugSend
+}
 function debugSend(text){
   send(text,debugChannel);
 }
@@ -88,7 +92,7 @@ function rtmStart(){
                 if(parsedRes["type"] === "message"){
                    for (var i = 0;i < channelLength;i ++){
                      if(channels[i].id === parsedRes.channel){
-                       responseFunction(parsedRes,channels[i].name,send);
+                       responseFunction(parsedRes,channels[i].name,toolKit);
                      }
                    }
                 }
