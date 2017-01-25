@@ -5,8 +5,8 @@ var responseFunction = function(res,teamName,toolKit){
        toolKit.send("てすとーレスる",teamName);
     }
     if(resText.match(/vote/g)){
-      console.log(resText);
-      vote.vote(resText, teamName, toolKit);
+      console.log(res.text);
+      vote.vote(res, teamName, send);
     }
 }
 
