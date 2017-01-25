@@ -6,6 +6,7 @@ var responseFunction = require('./response');
 
 var token = process.env.SLACKBOT_TOKEN;
 var channel = process.env.SLACKBOT_CHANNEL;
+var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL
 var username = process.env.SLACKBOT_USERNAME;
 var ws;
 var teams = [];
@@ -30,9 +31,13 @@ function send(text,channelId){
     )
 }
 
+function debugSend(text){
+  send(text,debugChannel);  
+}
+
 function listenStart(){
     teamGet(function(){
-     rtmStart(); 
+      return rtmStart()
     });
     
 }
@@ -47,6 +52,7 @@ function teamGet(next){
        }
        console.log(teams)
        teamLength = teams.length;
+       console.log(next)
        next();
     })
 }
@@ -56,10 +62,7 @@ function rtmStart(){
         ,function(err,res,body){
             ws = new WS(body.url, {agent: null});
             ws.on('open',function(){
-                ws.ping();
-            })
-            ws.on('pong',function(){
-                console.log("pong"); 
+              console.log("open");
             })
             ws.on('message',function(res,body){
                 var parsedRes = JSON.parse(res);
@@ -76,4 +79,4 @@ function rtmStart(){
 }
 
 
-module.exports = {send : send, teamGet: teamGet};
+module.exports = {send : send,debugSend : debugSend, listenStart : listenStart};
