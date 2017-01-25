@@ -5,7 +5,7 @@ var WS = require('ws');
 var responseFunction = require('./response');
 
 var token = process.env.SLACKBOT_TOKEN;
-var channel = process.env.SLACKBOT_CHANNEL;
+var channel = process.env.SLACKBOT_DEFAULTCHANNEL || process.env.SLACKBOT_CHANNEL;
 var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL || channel;
 var username = process.env.SLACKBOT_USERNAME;
 var responseAuthority = process.env.SlACKBOT_RESPONCE_AUTHORITY || "private";
