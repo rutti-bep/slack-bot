@@ -14,7 +14,7 @@ var ws;
 var channels = [];
 var channelLength;
 
-function send(text,channelId){ 
+function send(text,channelId){
     request.post('https://slack.com/api/chat.postMessage',
        {form: {
             token: token,
@@ -31,7 +31,7 @@ function send(text,channelId){
 }
 
 function debugSend(text){
-  send(text,debugChannel);  
+  send(text,debugChannel);
 }
 
 function listenStart(){
@@ -46,11 +46,10 @@ function listenStart(){
            rtmStart()
         });
     }
-    
 }
 
 function channelPublicGet(next){
-    request.post("https://slack.com/api/channels.list",{form: {token: token,exclude_archived : 1}}   
+    request.post("https://slack.com/api/channels.list",{form: {token: token,exclude_archived : 1}}
     ,function(err, res, body){
       console.log(body);
        var parsedRes = JSON.parse(body);
@@ -89,7 +88,7 @@ function rtmStart(){
                 if(parsedRes["type"] === "message"){
                    for (var i = 0;i < channelLength;i ++){
                      if(channels[i].id === parsedRes.channel){
-                       responseFunction(parsedRes.text,channels[i].name,send);
+                       responseFunction(parsedRes,channels[i].name,send);
                      }
                    }
                 }
