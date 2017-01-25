@@ -6,14 +6,11 @@ var responseFunction = require('./response');
 
 var token = process.env.SLACKBOT_TOKEN;
 var channel = process.env.SLACKBOT_CHANNEL;
-var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL
+var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL || channel;
 var username = process.env.SLACKBOT_USERNAME;
 var ws;
 var teams = [];
 var teamLength;
-
-
-//teamGet();
 
 function send(text,channelId){ 
     request.post('https://slack.com/api/chat.postMessage',
