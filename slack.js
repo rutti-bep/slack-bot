@@ -40,8 +40,9 @@ function listenStart(){
 }
 
 function teamGet(next){
-    request.post("https://slack.com/api/groups.list",{form: {token: token,exclude_archived: "1"}}
+    request.post("https://slack.com/api/groups.list",{form: {token: token}}
     ,function(err,res,body){
+      console.log(body);
        var parsedRes = JSON.parse(body);
        var teamCount = parsedRes['groups'].length;
        for(var i = 0; i < teamCount;i++){
@@ -49,7 +50,6 @@ function teamGet(next){
        }
        console.log(teams)
        teamLength = teams.length;
-       console.log(next)
        next();
     })
 }
@@ -64,12 +64,13 @@ function rtmStart(){
             ws.on('message',function(res,body){
                 var parsedRes = JSON.parse(res);
                 if(parsedRes["type"] === "message"){
-                   for (var i = 0;i < teamLength;i ++){
+                  responseFunction(parsedRes.text,parsedRes.channel,send);
+/*                   for (var i = 0;i < teamLength;i ++){
                      if(teams[i].id === parsedRes.channel){
                        responseFunction(parsedRes.text,teams[i].name,send);
                      }
                    }
-                }
+*/                }
                 console.dir(parsedRes);
             })
     })
