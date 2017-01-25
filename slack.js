@@ -87,6 +87,9 @@ function rtmStart(){
             ws.on('open',function(){
               console.log("open");
             })
+            ws.on('pong',function(){
+                console.log("pong");
+            })
             ws.on('message',function(res,body){
                 var parsedRes = JSON.parse(res);
                 if(parsedRes["type"] === "message"){
