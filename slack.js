@@ -14,6 +14,20 @@ var ws;
 var channels = [];
 var channelLength;
 
+function reactionAdd(ts, channelId, emoji){
+  request.post('https://slack.com/api/reactions.add',
+    {form: {
+      token: token,
+      channel: channelId || channel,
+      name: emoji,
+      timestamp: ts
+    }}
+    , (error, res, body) => {
+      console.log(error);
+      console.log(body);
+    }
+  );
+}
 function send(text,channelId){
     request.post('https://slack.com/api/chat.postMessage',
        {form: {
@@ -32,7 +46,8 @@ function send(text,channelId){
 
 const toolKit = {
   send: send,
-  debugSend: debugSend
+  debugSend: debugSend,
+  reactionAdd: reactionAdd
 }
 function debugSend(text){
   send(text,debugChannel);
