@@ -5,7 +5,6 @@ var responseFunction = function(res,teamName,toolKit){
        toolKit.send("てすとーレスる",teamName);
     }
     if(res.text && res.text.match(/vote/g)){
-        console.log('poepoe');
         vote.vote(res, teamName, toolKit);
     }
 }
