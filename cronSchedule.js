@@ -7,7 +7,7 @@ function scheduleStart(slackSend){
     var endLessonOnAm = new CronJob("0 20 11-12 * * 1-5",function(){slackSend("<!channel> 休み時間だよ!")},null,true,"Asia/Tokyo")
     var endLessonOnPm = new CronJob("0 20 14-16 * * 1-5",function(){slackSend("<!channel> 休み時間だよ!")},null,true,"Asia/Tokyo")
     var endLassonOnDay = new  CronJob("0 20 17 * * 1-4",function(){slackSend("<!channel> 今日はこれで終わりだよ!お疲れー!")},null,true,"Asia/Tokyo")
-    var endLassonOnFriDay = new  CronJob("0 20 17 * * 5",function(){slackSend("<!channel> 後はHRで終わりだよ！１週間お疲れー!")},null,true,"Asia/Tokyo")
+    var endLassonOnFriDay = new  CronJob("0 20 17 * * 5",function(){slackSend("<!channel> 一年間お疲れー！！")},null,true,"Asia/Tokyo")
     
 }
 
