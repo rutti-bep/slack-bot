@@ -6,6 +6,7 @@ var responseFunction = require('./response');
 
 var token = process.env.SLACKBOT_TOKEN;
 var channel = process.env.SLACKBOT_DEFAULTCHANNEL || process.env.SLACKBOT_CHANNEL;
+var talkChannel = process.env.SLACKBOT_TALKCHANNEL || channel;
 var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL || channel;
 var username = process.env.SLACKBOT_USERNAME;
 var responseAuthority = process.env.SlACKBOT_RESPONCE_AUTHORITY || "private";
@@ -28,6 +29,7 @@ function reactionAdd(ts, channelId, emoji){
     }
   );
 }
+
 function send(text,channelId){
     request.post('https://slack.com/api/chat.postMessage',
        {form: {
