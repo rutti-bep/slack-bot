@@ -5,15 +5,16 @@ var WS = require('ws');
 var responseFunction = require('./response');
 
 var token = process.env.SLACKBOT_TOKEN;
-var channel = process.env.SLACKBOT_DEFAULTCHANNEL || process.env.SLACKBOT_CHANNEL;
-var talkChannel = process.env.SLACKBOT_TALKCHANNEL || channel;
-var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL || channel;
+var defaultChannel = process.env.SLACKBOT_DEFAULTCHANNEL || process.env.SLACKBOT_CHANNEL;
+var talkChannel = process.env.SLACKBOT_TALKCHANNEL || defaultChannel;
+var debugChannel = process.env.SLACKBOT_DEBUGCHANNEL || defaultChannel;
 var username = process.env.SLACKBOT_USERNAME;
 var responseAuthority = process.env.SlACKBOT_RESPONCE_AUTHORITY || "private";
 
 var ws;
 var channels = [];
 var channelLength;
+var defaultChannelId;
 
 function reactionAdd(ts, channelId, emoji){
   request.post('https://slack.com/api/reactions.add',
@@ -92,6 +93,14 @@ function channelPrivateGet(next){
          channels.push({id : parsedRes.groups[i].id, name : parsedRes.groups[i].name});
        }
        channelLength = channels.length;
+       for(var i = 0; i < channelLength;i++){
+          if(channels[i].name == defaultChannel){
+            defaultChannelId = channels[i].id
+            break;
+          }else if(i == channelLength-1){
+            console.log("\u001b[33m"+"error!? : not found defaultChannel"+"\u001b[0m")
+          }
+       }
        next();
     })
 }
